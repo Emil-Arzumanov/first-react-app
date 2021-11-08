@@ -35,7 +35,7 @@ export const authorizeThunk = () => {
         AuthAPI.loginUser(`auth/me`).then(data => {
             if (data.resultCode === 0) {
                 dispatch(setLoginDataAC(data.data.id,data.data.login,data.data.email));
-            };
+            }
         });
     };
 };
