@@ -1,0 +1,26 @@
+.avaDescription img {
+    width: 100%;
+}
+
+.avaDescription {
+    margin: 6% 0 18% 0;
+}
+
+.ava {
+    width: 20%;
+    float: left;
+    margin-right: 5%;
+}
+
+.description {
+    margin: 0 0 0 20%;
+}
+
+.description p {
+    margin: 0;
+    padding: 0;
+}
+
+.description h2 {
+    margin: 0;
+}

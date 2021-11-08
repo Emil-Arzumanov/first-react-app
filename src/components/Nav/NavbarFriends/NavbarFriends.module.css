@@ -1,0 +1,8 @@
+.divClass {
+    max-width: 200px;
+}
+
+.divClass p {
+    font-size: 200%;
+    margin-bottom: 0;
+}

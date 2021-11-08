@@ -1,0 +1,12 @@
+.circle {
+    background-color: yellow;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.postMessage {
+    margin: 6%;
+    width: 100%;
+}

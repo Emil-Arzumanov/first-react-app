@@ -1,0 +1,27 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.currentDialog {
+    background-color: azure;
+    border: 1px solid deepskyblue;
+    border-radius: 10px;
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.currentDialog::-webkit-scrollbar {
+    width: 16px;
+}
+
+.currentDialog::-webkit-scrollbar-track {
+    background-color: deepskyblue;
+    border-radius: 100px;
+}
+
+.currentDialog::-webkit-scrollbar-thumb {
+    background-color: aqua;
+    border-radius: 100px;
+}

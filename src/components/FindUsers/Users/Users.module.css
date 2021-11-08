@@ -1,0 +1,44 @@
+.logoDiv {
+    width: 80px;
+    height: 22%;
+}
+
+.button {
+    width: 70px;
+}
+
+.logo {
+    width: 70px;
+}
+
+.allDiv {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
+
+.name {
+    float: left;
+}
+
+.home {
+    float: right;
+}
+
+.informationDiv {
+    width: 82%;
+    border: 2px solid gainsboro;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.pages {
+    margin-bottom: 30px;
+}
+.pages span {
+    margin: 0 20px;
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: bold;
+}

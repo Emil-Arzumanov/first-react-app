@@ -1,0 +1,32 @@
+.creator {
+    margin: 10px 10px 10px 0;
+    width: 100%;
+    text-align: right;
+}
+
+.creator textarea {
+    height: 80px;
+    width: 100%;
+    border-radius: 40px;
+    padding: 20px;
+    resize: none;
+    border: 4px solid yellow;
+}
+.creator textarea:focus {
+    outline: 0;
+}
+
+.creator button {
+    border: 2px solid yellow;
+    background-color: yellow;
+    color: grey;
+    padding: 1% 4%;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+.creator button:hover {
+    border: 2px solid orange;
+    background-color: gold;
+    color: white;
+    transition: 0.5s;
+}
