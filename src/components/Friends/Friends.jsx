@@ -3,7 +3,7 @@ import FriendsCSS from "./Friends.module.css";
 const Friends = () => {
     return (
         <div>
-            Friends
+            <h1>Friends</h1>
         </div>
     );
 };
