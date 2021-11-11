@@ -1,5 +1,4 @@
 let SEND_MESSAGE = "SEND-MESSAGE";
-let CHANGE_MESSAGE = "CHANGE-MESSAGE";
 
 let initialState = {
     dialogsData: [
@@ -17,7 +16,6 @@ let initialState = {
         {name: "Anton", messageID: 12}
     ],
     dialog: {
-        currentTextar: "",
         messages: ["Hi!", "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG", "Fuck you,asshole!",
             "Thanks man :)", "LOL", "DING=DONG", "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG",
             "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG"]
@@ -27,36 +25,27 @@ let initialState = {
 
 const messageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case(CHANGE_MESSAGE): {
-            let stateCopy = {...state};
-            stateCopy.dialog.currentTextar = action.text;
-            return stateCopy;
-        }
         case(SEND_MESSAGE): {
-            let stateCopy = {...state};
-            if (stateCopy.dialog.currentTextar.length === 0) {
+            if (action.text.length === 0) {
                 alert("NOTHING TO SEND!")
-                return stateCopy;
+                return state;
             }
-            let newMessage = stateCopy.dialog.currentTextar;
-            stateCopy.dialog.messages = [...state.dialog.messages];
-            stateCopy.dialog.messages.push(newMessage);
-            stateCopy.dialog.currentTextar = "";
-            return stateCopy;
+            let messagesArr = [...state.dialog.messages];
+            messagesArr.push(action.text);
+            let stateCopy = {...state};
+            stateCopy.dialog.messages = [...messagesArr];
+            return {
+                ...state
+            };
         }
         default:
             return state;
     }
 };
 
-export const sendMessageActionCreator = () => {
+export const sendMessageActionCreator = (text) => {
     return {
-        type: SEND_MESSAGE
-    };
-};
-export const newMessageActionCreator = (text) => {
-    return {
-        type: CHANGE_MESSAGE,
+        type: SEND_MESSAGE,
         text: text
     };
 };
