@@ -1,8 +1,8 @@
 import {useFormik} from "formik";
-import messageCreatorCSS from "./MessageCreator/MessageCreator.module.css";
+import messageCreatorCSS from "./MessageCreator.module.css";
 import React from "react";
 
-const MessagesForm = (props) => {
+const MessagesCreatorForm = (props) => {
     const formik = useFormik({
         initialValues: {
             text: "",
@@ -28,4 +28,4 @@ const MessagesForm = (props) => {
     );
 };
 
-export default MessagesForm;
+export default MessagesCreatorForm;

@@ -4,7 +4,7 @@ import Post from "../Post/Post";
 const Posts = (props) => {
     return (
         <div>
-            <PostCreator  addPost={props.addPost} updatePostText={props.updatePostText}/>
+            <PostCreator  addPost={props.addPost}/>
             {
                 props.postsData.map(
                     p => <Post message={p.message}/>

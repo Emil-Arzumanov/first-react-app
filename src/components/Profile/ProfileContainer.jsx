@@ -21,7 +21,6 @@ class ProfileAPIComponent extends React.Component {
 
     render() {
         return <Profile addPost={this.props.addPostAC}
-                        updatePostText={this.props.newPostMessageAC}
                         postsData={this.props.postsData}
                         profileData={this.props.profileData}
                         updateStatus={this.props.updateStatusThunk}
@@ -40,7 +39,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps,{
-        newPostMessageAC,
         addPostAC,
         setProfileDataAC,
         setProfileDataThunk,
