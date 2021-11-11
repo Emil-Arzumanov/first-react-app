@@ -1,6 +1,5 @@
 import {ProfileAPI} from "../api/api";
 
-let CHANGE_POST = "CHANGE-POST";
 let ADD_POST = "ADD-POST";
 let SET_PROFILE = "SET-PROFILE";
 let SET_STATUS = "SET-STATUS";
@@ -23,20 +22,14 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case(CHANGE_POST): {
-            return {
-                ...state,
-                newPostElement: action.text
-            }
-        }
         case(ADD_POST): {
-            if (state.newPostElement.length === 0) {
+            if (action.text === 0) {
                 alert("NOTHING TO PUBLISH!")
                 return state;
             }
             let newPost = {
                 id: state.postsData.length + 1,
-                message: state.newPostElement
+                message: action.text
             };
             let postsArr = [...state.postsData];
             postsArr.push(newPost);
@@ -63,14 +56,9 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostAC = () => {
+export const addPostAC = (text) => {
     return {
-        type: ADD_POST
-    };
-};
-export const newPostMessageAC = (text) => {
-    return {
-        type: CHANGE_POST,
+        type: ADD_POST,
         text: text
     };
 };

@@ -1,9 +1,9 @@
 import React from "react";
-import MessagesForm from "../MessagesForm";
+import MessagesCreatorForm from "./MessagesCreatorForm";
 
 const MessageCreator = (props) => {
     return (
-        <MessagesForm sendMessage={props.sendMessage}/>
+        <MessagesCreatorForm sendMessage={props.sendMessage}/>
     );
 };
 
