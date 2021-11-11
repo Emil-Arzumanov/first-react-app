@@ -30,19 +30,21 @@ const profileReducer = (state = initialState, action) => {
             }
         }
         case(ADD_POST): {
-            let stateCopy = {...state};
-            stateCopy.postsData = [...state.postsData];
-            if (stateCopy.newPostElement.length === 0) {
+            if (state.newPostElement.length === 0) {
                 alert("NOTHING TO PUBLISH!")
-                return stateCopy;
+                return state;
             }
             let newPost = {
-                id: stateCopy.postsData.length + 1,
-                message: stateCopy.newPostElement
+                id: state.postsData.length + 1,
+                message: state.newPostElement
             };
-            stateCopy.postsData.push(newPost);
-            stateCopy.newPostElement = "";
-            return stateCopy;
+            let postsArr = [...state.postsData];
+            postsArr.push(newPost);
+            state.newPostElement = "";
+            return {
+                ...state,
+                postsData: postsArr
+            };
         }
         case(SET_PROFILE): {
             return {

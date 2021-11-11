@@ -9,7 +9,7 @@ const Messages = (props) => {
             <DialogItem dialogsData={props.dialogsData} />
             <div>
                 <Message dialogsMessages={props.dialogsMessages}/>
-                <MessageCreator sendMessage={props.sendMessage} updateMessageText={props.updateMessageText}/>
+                <MessageCreator sendMessage={props.sendMessage}/>
             </div>
         </div>
     );
