@@ -1,10 +1,10 @@
-import PostCreator from "../PostCreator/PostCreator.jsx";
 import Post from "../Post/Post";
+import {PostCreatorForm} from "../PostCreator/PostCreatorForm";
 
 const Posts = (props) => {
     return (
         <div>
-            <PostCreator  addPost={props.addPost}/>
+            <PostCreatorForm  addPost={props.addPost}/>
             {
                 props.postsData.map(
                     p => <Post message={p.message}/>
