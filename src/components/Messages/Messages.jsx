@@ -1,7 +1,7 @@
 import messagesCSS from "./Messages.module.css";
 import DialogItem from "./DialogElements/DialogElements";
 import Message from "./Message/Message";
-import MessageCreator from "./MessageCreator/MessageCreator";
+import {MessagesCreatorForm} from "./MessageCreator/MessagesCreatorForm";
 
 const Messages = (props) => {
     return (
@@ -9,7 +9,7 @@ const Messages = (props) => {
             <DialogItem dialogsData={props.dialogsData} />
             <div>
                 <Message dialogsMessages={props.dialogsMessages}/>
-                <MessageCreator sendMessage={props.sendMessage}/>
+                <MessagesCreatorForm sendMessage={props.sendMessage}/>
             </div>
         </div>
     );
