@@ -23,10 +23,6 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case(ADD_POST): {
-            if (action.text === 0) {
-                alert("NOTHING TO PUBLISH!")
-                return state;
-            }
             let newPost = {
                 id: state.postsData.length + 1,
                 message: action.text
