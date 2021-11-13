@@ -9,13 +9,12 @@ class LoginAPIComponent extends React.Component {
     };
 
     render() {
-        return <Login logIn={this.props.logInThunk}
-                      logOut={this.props.logOutThunk}
-        />
+        return <Login isAuth={this.props.isAuthorized}/>
     }
 }
 
 let mapStateToProps = (state) => {
+    window.isAuth = state.authorize.isAuthorized;
     return {
         userID: state.authorize.userID,
         login: state.authorize.login,
