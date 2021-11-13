@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import React from "react";
-import {authorizeThunk, setLoginDataAC} from "../../Redux/authorize-reducer";
+import {authorizeThunk, logInThunk, logOutThunk} from "../../Redux/authorize-reducer";
 import Login from "./Login";
 
 class LoginAPIComponent extends React.Component {
@@ -9,7 +9,9 @@ class LoginAPIComponent extends React.Component {
     };
 
     render() {
-        return <Login {...this.props}/>
+        return <Login logIn={this.props.logInThunk}
+                      logOut={this.props.logOutThunk}
+        />
     }
 }
 
@@ -23,8 +25,9 @@ let mapStateToProps = (state) => {
 };
 
 const LoginContainer = connect(mapStateToProps,{
-    setLoginDataAC,
-    authorizeThunk
+    authorizeThunk,
+    logInThunk,
+    logOutThunk
 })(LoginAPIComponent)
 
 export default LoginContainer;

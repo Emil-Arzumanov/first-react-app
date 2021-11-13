@@ -11,14 +11,14 @@ export const LoginForm = (props) => (
     <div>
         <Formik
             initialValues={{
-                login: "",
+                email: "",
                 password: "",
                 rememberMe: false
             }}
             validationSchema={LoginValidation}
             onSubmit={
                 values => {
-                    console.log({values});
+                    props.logIn({values});
                 }
             }
         >
@@ -28,7 +28,7 @@ export const LoginForm = (props) => (
                         <Field name={"login"}/>
                     </div>
                     <div>
-                        <Field name={"password"}/>
+                        <Field name={"password"} type={"password"}/>
                         {errors.password && touched.password ?
                             <div>{errors.password}</div> :
                             null
