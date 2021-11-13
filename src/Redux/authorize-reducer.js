@@ -6,6 +6,7 @@ let initialState = {
     userID: null,
     login: null,
     email: null,
+    password: null,
     isAuthorized: false
 };
 
@@ -23,18 +24,36 @@ const authorizeReducer = (state = initialState, action) => {
     }
 };
 
-export const setLoginDataAC = (userID, login, email) => {
+export const setLoginDataAC = (userID, login, email, isAuth) => {
     return {
         type: SET_LOGIN_DATA,
         data: {userID, login, email},
-        isAuthorized: true
+        isAuthorized: isAuth
     };
 };
 export const authorizeThunk = () => {
     return (dispatch) => {
         AuthAPI.loginUser(`auth/me`).then(data => {
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC(data.data.id,data.data.login,data.data.email));
+                dispatch(setLoginDataAC(data.data.id,data.data.login,data.data.email,true));
+            }
+        });
+    };
+};
+export const logInThunk = (email,password,rememberMe) => {
+    return (dispatch) => {
+        AuthAPI.login(email,password,rememberMe).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(authorizeThunk());
+            }
+        });
+    };
+};
+export const logOutThunk = () => {
+    return (dispatch) => {
+        AuthAPI.logout().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setLoginDataAC(null,null,null,false));
             }
         });
     };

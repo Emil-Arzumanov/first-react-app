@@ -4,7 +4,9 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm/>
+            <LoginForm logIn={props.logInThunk}
+                       logOut={props.logOutThunk}
+            />
         </div>
     );
 };
