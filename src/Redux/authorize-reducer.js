@@ -15,8 +15,7 @@ const authorizeReducer = (state = initialState, action) => {
         case(SET_LOGIN_DATA): {
             return {
                 ...state,
-                ...action.data,
-                isAuthorized: action.isAuthorized
+                ...action.data
             }
         }
         default:
@@ -24,16 +23,15 @@ const authorizeReducer = (state = initialState, action) => {
     }
 };
 
-export const setLoginDataAC = (userID, login, email, isAuth) => {
+export const setLoginDataAC = (userID, login, email, isAuthorized) => {
     return {
         type: SET_LOGIN_DATA,
-        data: {userID, login, email},
-        isAuthorized: isAuth
+        data: {userID, login, email, isAuthorized}
     };
 };
 export const authorizeThunk = () => {
     return (dispatch) => {
-        AuthAPI.loginUser(`auth/me`).then(data => {
+        AuthAPI.loginUser().then(data => {
             if (data.resultCode === 0) {
                 dispatch(setLoginDataAC(data.data.id,data.data.login,data.data.email,true));
             }

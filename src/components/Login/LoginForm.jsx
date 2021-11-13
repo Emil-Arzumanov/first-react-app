@@ -2,7 +2,6 @@ import {Field, Formik, Form} from "formik";
 import * as Yup from 'yup';
 import {connect} from "react-redux";
 import {logInThunk, logOutThunk} from "../../Redux/authorize-reducer";
-import {Redirect} from "react-router-dom";
 
 const LoginValidation = Yup.object().shape({
     password: Yup.string()
@@ -43,7 +42,7 @@ const LoginForm = (props) => {
                         <div>
                             {
                                 props.isAuthorized ?
-                                    <button onClick={props.logOutThunk}>Log Out</button> :
+                                    <button type={"button"} onClick={props.logOutThunk}>Log Out</button> :
                                     <button type={"submit"}>Log In</button>
                             }
                         </div>
