@@ -5,13 +5,15 @@ import friendsReducer from "./friends-reducer";
 import usersReducer from "./users-reducer";
 import authorizeReducer from "./authorize-reducer";
 import thunkMiddleware from "redux-thunk";
+import appReducer from "./app-reducer";
 
 let reducers = combineReducers({
     profileData: profileReducer,
     messagesData: messageReducer,
     friends: friendsReducer,
     users: usersReducer,
-    authorize: authorizeReducer
+    authorize: authorizeReducer,
+    app: appReducer
 })
 
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));
