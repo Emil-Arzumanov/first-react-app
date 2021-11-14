@@ -7,7 +7,8 @@ let initialState = {
     login: null,
     email: null,
     password: null,
-    isAuthorized: false
+    isAuthorized: false,
+    logInErrorMessage: ""
 };
 
 const authorizeReducer = (state = initialState, action) => {
@@ -23,26 +24,29 @@ const authorizeReducer = (state = initialState, action) => {
     }
 };
 
-export const setLoginDataAC = (userID, login, email, isAuthorized) => {
+export const setLoginDataAC = (userID, login, email, isAuthorized, logInErrorMessage) => {
     return {
         type: SET_LOGIN_DATA,
-        data: {userID, login, email, isAuthorized}
+        data: {userID, login, email, isAuthorized, logInErrorMessage}
     };
 };
 export const authorizeThunk = () => {
     return (dispatch) => {
         AuthAPI.loginUser().then(data => {
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC(data.data.id,data.data.login,data.data.email,true));
+                dispatch(setLoginDataAC(data.data.id, data.data.login, data.data.email, true,""));
             }
         });
     };
 };
-export const logInThunk = (email,password,rememberMe) => {
+export const logInThunk = (email, password, rememberMe) => {
     return (dispatch) => {
-        AuthAPI.login(email,password,rememberMe).then(data => {
+        AuthAPI.login(email, password, rememberMe).then(data => {
             if (data.resultCode === 0) {
                 dispatch(authorizeThunk());
+            } else {
+                let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some ERROR";
+                dispatch(setLoginDataAC(null, null, null, false, message))
             }
         });
     };
@@ -51,7 +55,7 @@ export const logOutThunk = () => {
     return (dispatch) => {
         AuthAPI.logout().then(data => {
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC(null,null,null,false));
+                dispatch(setLoginDataAC(null, null, null, false));
             }
         });
     };

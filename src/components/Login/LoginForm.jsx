@@ -4,9 +4,12 @@ import {connect} from "react-redux";
 import {logInThunk, logOutThunk} from "../../Redux/authorize-reducer";
 
 const LoginValidation = Yup.object().shape({
+    email: Yup.string()
+        .required("You must write your email"),
     password: Yup.string()
         .min(6, "To short...Not safe!")
         .max(20, "Wow!Wow!That's enough.Calm down...")
+        .required("You must write your password")
 });
 const LoginForm = (props) => {
     return (
@@ -19,7 +22,7 @@ const LoginForm = (props) => {
                 }}
                 validationSchema={LoginValidation}
                 onSubmit={
-                    values => {
+                    (values, err) => {
                         props.logInThunk(values.email, values.password, values.rememberMe);
                     }
                 }
@@ -28,6 +31,10 @@ const LoginForm = (props) => {
                     <Form>
                         <div>
                             <Field name={"email"}/>
+                            {errors.email && touched.email ?
+                                <div>{errors.email}</div> :
+                                null
+                            }
                         </div>
                         <div>
                             <Field name={"password"} type={"password"}/>
@@ -39,6 +46,11 @@ const LoginForm = (props) => {
                         <div>
                             <Field name={"rememberMe"} type={"checkbox"}/> remember me
                         </div>
+                        {
+                            props.logInErrorMessage.length > 0 ?
+                                <div>{props.logInErrorMessage}</div> :
+                                null
+                        }
                         <div>
                             {
                                 props.isAuthorized ?
@@ -55,7 +67,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.authorize.isAuthorized
+        isAuthorized: state.authorize.isAuthorized,
+        logInErrorMessage: state.authorize.logInErrorMessage
     };
 };
 
