@@ -50,6 +50,5 @@ export default compose(
         unfollowUserThunk,
         followUserThunk,
         changePageAC
-    }),
-    withAuthRedirect
+    })
 )(UsersAPIComponent);
