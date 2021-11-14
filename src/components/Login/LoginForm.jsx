@@ -22,7 +22,7 @@ const LoginForm = (props) => {
                 }}
                 validationSchema={LoginValidation}
                 onSubmit={
-                    values => {
+                    (values, err) => {
                         props.logInThunk(values.email, values.password, values.rememberMe);
                     }
                 }
@@ -46,6 +46,11 @@ const LoginForm = (props) => {
                         <div>
                             <Field name={"rememberMe"} type={"checkbox"}/> remember me
                         </div>
+                        {
+                            props.logInErrorMessage.length > 0 ?
+                                <div>{props.logInErrorMessage}</div> :
+                                null
+                        }
                         <div>
                             {
                                 props.isAuthorized ?
@@ -62,7 +67,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.authorize.isAuthorized
+        isAuthorized: state.authorize.isAuthorized,
+        logInErrorMessage: state.authorize.logInErrorMessage
     };
 };
 
