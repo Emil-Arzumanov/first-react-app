@@ -32,9 +32,9 @@ export const setLoginDataAC = (userID, login, email, isAuthorized, logInErrorMes
 };
 export const authorizeThunk = () => {
     return (dispatch) => {
-        AuthAPI.loginUser().then(data => {
+        return AuthAPI.loginUser().then(data => {
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC(data.data.id, data.data.login, data.data.email, true,""));
+                dispatch(setLoginDataAC(data.data.id, data.data.login, data.data.email, true, ""));
             }
         });
     };

@@ -4,10 +4,6 @@ import {authorizeThunk, logInThunk, logOutThunk} from "../../Redux/authorize-red
 import Login from "./Login";
 
 class LoginAPIComponent extends React.Component {
-    componentDidMount() {
-        this.props.authorizeThunk();
-    };
-
     render() {
         return <Login/>
     }

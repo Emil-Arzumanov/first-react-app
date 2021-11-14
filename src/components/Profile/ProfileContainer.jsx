@@ -47,4 +47,4 @@ export default compose(
     }),
     withRouter,
     withAuthRedirect
-)(ProfileAPIComponent);;
+)(ProfileAPIComponent);
