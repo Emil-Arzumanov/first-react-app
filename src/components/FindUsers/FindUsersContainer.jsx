@@ -5,10 +5,17 @@ import {
     unfollowUserThunk,
     followUserThunk,
     changePageAC
-} from "../../Redux/users-reducer";
+} from "../../Redux/users/users-reducer";
 import React from "react";
-import {withAuthRedirect} from "../../HOC/AuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalCount,
+    getUsersElements
+} from "../../Redux/users/users-selection";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -33,14 +40,14 @@ class UsersAPIComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        usersElements: state.users.users,
+        usersElements: getUsersElements(state),
         pages: {
-            pageSize: state.users.pageSize,
-            totalCount: state.users.totalCount,
-            currentPage: state.users.currentPage
+            pageSize: getPageSize(state),
+            totalCount: getTotalCount(state),
+            currentPage: getCurrentPage(state)
         },
-        isFetching: state.users.isFetching,
-        followingInProgress: state.users.followingInProgress
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     };
 };
 

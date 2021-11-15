@@ -2,7 +2,7 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 import friendsReducer from "./friends-reducer";
-import usersReducer from "./users-reducer";
+import usersReducer from "./users/users-reducer";
 import authorizeReducer from "./authorize-reducer";
 import thunkMiddleware from "redux-thunk";
 import appReducer from "./app-reducer";
