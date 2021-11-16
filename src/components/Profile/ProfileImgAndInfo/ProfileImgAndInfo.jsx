@@ -1,7 +1,7 @@
 import profile from "./ProfileImgAndInfo.module.css";
 import profilePic from "../ProfileIMG/profileIMG.png";
 import Loader from "../../GeneralComponents/Loader";
-import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileStatusHook from "../ProfileStatus/ProfileStatusHook";
 
 /*
 {
@@ -46,7 +46,7 @@ const ProfileImgAndInfo = (props) => {
                 <p>City: Minsk</p>
                 <p>Education: BSU'11</p>
                 <p>Web Site: <a href={props.profileData.data.contacts.vk}>{props.profileData.data.contacts.vk}</a></p>
-                <p><ProfileStatus status={props.status} updateStatus={props.updateStatus}/></p>
+                <p><ProfileStatusHook status={props.status} updateStatus={props.updateStatus}/></p>
             </div>
         </div>
     );
