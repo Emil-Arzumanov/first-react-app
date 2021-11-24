@@ -8,11 +8,9 @@ import {
 import React from "react";
 import {compose} from "redux";
 import {
-    getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize, getPagesReselect,
-    getTotalCount,
+    getPagesReselect,
     getUsersElements
 } from "../../Redux/users/users-selection";
 
