@@ -75,7 +75,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 followingInProgress: action.isFetching
-                    ? [...state.followingInProgress,action.userID]
+                    ? [...state.followingInProgress, action.userID]
                     : state.followingInProgress.filter(id => id != action.userID)
             }
         }
@@ -120,44 +120,41 @@ export const toggleFetchingAC = (isFetching) => {
         isFetching: isFetching
     };
 };
-export const toggleFollowInProgressAC = (isFetching,id) => {
+export const toggleFollowInProgressAC = (isFetching, id) => {
     return {
         type: TOGGLE_FOLLOWING_IN_PROGRESS,
         isFetching: isFetching,
         userID: id
     };
 };
-export const getUserThunk = (currentPage,pageSize) => {
-    return (dispatch) => {
+export const getUserThunk = (currentPage, pageSize) => {
+    return async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        UsersAPI.getUsers(currentPage,pageSize).then(data => {
-            dispatch(toggleFetchingAC(false));
-            dispatch(setUserAC(data.items));
-            dispatch(setTotalCountAC(data.totalCount));
-            dispatch(changePageAC(currentPage));
-        });
+        let data = await UsersAPI.getUsers(currentPage, pageSize)
+        dispatch(toggleFetchingAC(false));
+        dispatch(setUserAC(data.items));
+        dispatch(setTotalCountAC(data.totalCount));
+        dispatch(changePageAC(currentPage));
     };
 };
 export const unfollowUserThunk = (id) => {
-    return (dispatch) => {
-        dispatch(toggleFollowInProgressAC(true,id));
-        UsersAPI.deleteUsers(id).then(deleteData => {
-            if (deleteData.resultCode === 0) {
-                dispatch(unfollowUserAС(id));
-            }
-            dispatch(toggleFollowInProgressAC(false,id));
-        });
+    return async (dispatch) => {
+        dispatch(toggleFollowInProgressAC(true, id));
+        let deleteData = await UsersAPI.deleteUsers(id)
+        if (deleteData.resultCode === 0) {
+            dispatch(unfollowUserAС(id));
+        }
+        dispatch(toggleFollowInProgressAC(false, id));
     };
 };
 export const followUserThunk = (id) => {
-    return (dispatch) => {
-        dispatch(toggleFollowInProgressAC(true,id));
-        UsersAPI.postUsers(id).then(deleteData => {
-            if (deleteData.resultCode === 0) {
-                dispatch(followUserAС(id));
-            }
-            dispatch(toggleFollowInProgressAC(false,id));
-        });
+    return async (dispatch) => {
+        dispatch(toggleFollowInProgressAC(true, id));
+        let deleteData = await UsersAPI.postUsers(id)
+        if (deleteData.resultCode === 0) {
+            dispatch(followUserAС(id));
+        }
+        dispatch(toggleFollowInProgressAC(false, id));
     };
 };
 
