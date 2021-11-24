@@ -39,11 +39,11 @@ const Users = (props) => {
                                         {
                                             data.followed ?
                                                 <button disabled={props.followingInProgress.some(id => data.id === id)} className={usersCSS.button} onClick={() => {
-                                                    props.unfollowUserThunk(data.id);
+                                                    props.followUnfollowUserThunk(data.id,false);
                                                 }
                                                 }>{"Unfollow"}</button> :
                                                 <button disabled={props.followingInProgress.some(id => data.id === id)} className={usersCSS.button} onClick={() => {
-                                                    props.followUserThunk(data.id);
+                                                    props.followUnfollowUserThunk(data.id,true);
                                                 }
                                                 }>{"Follow"}</button>
                                         }

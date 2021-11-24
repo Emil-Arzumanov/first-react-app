@@ -2,8 +2,7 @@ import {connect} from "react-redux";
 import FindUsers from "./FindUsers";
 import {
     getUserThunk,
-    unfollowUserThunk,
-    followUserThunk,
+    followUnfollowUserThunk,
     changePageAC
 } from "../../Redux/users/users-reducer";
 import React from "react";
@@ -30,8 +29,7 @@ class UsersAPIComponent extends React.Component {
         return <FindUsers usersElements={this.props.usersElements}
                           pages={this.props.pages}
                           isFetching={this.props.isFetching}
-                          followUserThunk={this.props.followUserThunk}
-                          unfollowUserThunk={this.props.unfollowUserThunk}
+                          followUnfollowUserThunk={this.props.followUnfollowUserThunk}
                           changePage={this.onPageChanged}
                           followingInProgress={this.props.followingInProgress}
         />
@@ -50,8 +48,7 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {
         getUserThunk,
-        unfollowUserThunk,
-        followUserThunk,
+        followUnfollowUserThunk,
         changePageAC
     })
 )(UsersAPIComponent);

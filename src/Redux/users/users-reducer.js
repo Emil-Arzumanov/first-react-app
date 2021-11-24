@@ -1,7 +1,6 @@
 import {UsersAPI} from "../../api/api";
 
-let UNFOLLOW_USER = "UNFOLLOW-USER";
-let FOLLOW_USER = "FOLLOW-USER";
+let FOLLOW_UNFOLLOW_USER = "FOLLOW-UNFOLLOW-USER";
 let SET_USER = "SET-USER";
 let CHANGE_PAGE = "CHANGE-PAGE";
 let SET_TOTALCOUNT = "SET-TOTALCOUNT";
@@ -19,28 +18,14 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case(UNFOLLOW_USER): {
+        case(FOLLOW_UNFOLLOW_USER): {
             return {
                 ...state,
                 users: state.users.map((data) => {
                     if (data.id === action.id) {
                         return {
                             ...data,
-                            followed: false
-                        };
-                    }
-                    return data;
-                })
-            }
-        }
-        case(FOLLOW_USER): {
-            return {
-                ...state,
-                users: state.users.map((data) => {
-                    if (data.id === action.id) {
-                        return {
-                            ...data,
-                            followed: true
+                            followed: action.followed
                         };
                     }
                     return data;
@@ -84,16 +69,11 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const followUserAС = (id) => {
+export const followUnfollowUserAС = (id, followed) => {
     return {
-        type: FOLLOW_USER,
-        id: id
-    };
-};
-export const unfollowUserAС = (id) => {
-    return {
-        type: UNFOLLOW_USER,
-        id: id
+        type: FOLLOW_UNFOLLOW_USER,
+        id: id,
+        followed: followed
     };
 };
 export const setUserAC = (users) => {
@@ -137,25 +117,16 @@ export const getUserThunk = (currentPage, pageSize) => {
         dispatch(changePageAC(currentPage));
     };
 };
-export const unfollowUserThunk = (id) => {
+
+export const followUnfollowUserThunk = (id, followed) => {
     return async (dispatch) => {
         dispatch(toggleFollowInProgressAC(true, id));
-        let deleteData = await UsersAPI.deleteUsers(id)
+        let deleteData = followed ? await UsersAPI.postUsers(id) : await UsersAPI.deleteUsers(id);
         if (deleteData.resultCode === 0) {
-            dispatch(unfollowUserAС(id));
+            dispatch(followUnfollowUserAС(id, followed));
         }
         dispatch(toggleFollowInProgressAC(false, id));
-    };
-};
-export const followUserThunk = (id) => {
-    return async (dispatch) => {
-        dispatch(toggleFollowInProgressAC(true, id));
-        let deleteData = await UsersAPI.postUsers(id)
-        if (deleteData.resultCode === 0) {
-            dispatch(followUserAС(id));
-        }
-        dispatch(toggleFollowInProgressAC(false, id));
-    };
+    }
 };
 
 export default usersReducer;

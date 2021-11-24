@@ -9,8 +9,7 @@ const FindUsers = (props) => {
                 <Users usersElements={props.usersElements}
                        pages={props.pages}
                        isFetching={props.isFetching}
-                       followUserThunk={props.followUserThunk}
-                       unfollowUserThunk={props.unfollowUserThunk}
+                       followUnfollowUserThunk={props.followUnfollowUserThunk}
                        onPageChange={props.changePage}
                        followingInProgress={props.followingInProgress}
                 />
