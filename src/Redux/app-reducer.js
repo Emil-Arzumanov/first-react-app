@@ -1,6 +1,6 @@
 import {authorizeThunk} from "./authorize-reducer";
 
-let SET_INITIALIZE = "SET-INITIALIZE";
+let SET_INITIALIZE = "app-reducer/SET-INITIALIZE";
 
 let initialState = {
     initialized: false

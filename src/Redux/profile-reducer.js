@@ -72,26 +72,23 @@ export const setStatusAC = (status) => {
 };
 
 export const setProfileDataThunk = (userID = 20511) => {
-    return (dispatch) => {
-        ProfileAPI.profileUser(userID).then(response => {
-            dispatch(setProfileDataAC(response));
-        });
+    return async (dispatch) => {
+        let response = await ProfileAPI.profileUser(userID)
+        dispatch(setProfileDataAC(response));
     };
 };
 export const getStatusThunk = (userID = 20511) => {
-    return (dispatch) => {
-        ProfileAPI.getStatus(userID).then(response => {
-            dispatch(setStatusAC(response.data));
-        });
+    return async (dispatch) => {
+        let response = await ProfileAPI.getStatus(userID)
+        dispatch(setStatusAC(response.data));
     };
 };
 export const updateStatusThunk = (status) => {
-    return (dispatch) => {
-        ProfileAPI.updateStatus(status).then(response => {
-            if (response.data.resulCode === 0) {
-                dispatch(setStatusAC(response.data));
-            }
-        });
+    return async (dispatch) => {
+        let response = await ProfileAPI.updateStatus(status)
+        if (response.data.resulCode === 0) {
+            dispatch(setStatusAC(response.data));
+        }
     };
 };
 
