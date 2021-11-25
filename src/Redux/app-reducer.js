@@ -1,4 +1,4 @@
-import {authorizeThunk} from "./authorize-reducer";
+import {authorizeThunk} from "./authorize/authorize-reducer";
 
 let SET_INITIALIZE = "app-reducer/SET-INITIALIZE";
 
