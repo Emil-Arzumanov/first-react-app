@@ -1,4 +1,4 @@
-import {AuthAPI} from "../api/api";
+import {AuthAPI} from "../../api/api";
 
 let SET_LOGIN_DATA = "authorize-reducer/SET-LOGIN-DATA";
 

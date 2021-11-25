@@ -1,7 +1,5 @@
 import {Field, Formik, Form} from "formik";
 import * as Yup from 'yup';
-import {connect} from "react-redux";
-import {logInThunk, logOutThunk} from "../../Redux/authorize-reducer";
 
 const LoginValidation = Yup.object().shape({
     email: Yup.string()
@@ -65,11 +63,4 @@ const LoginForm = (props) => {
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-        isAuthorized: state.authorize.isAuthorized,
-        logInErrorMessage: state.authorize.logInErrorMessage
-    };
-};
-
-export default connect(mapStateToProps, {logInThunk, logOutThunk})(LoginForm)
+export default LoginForm;
