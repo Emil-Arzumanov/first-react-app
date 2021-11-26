@@ -44,7 +44,7 @@ export const logInThunk = (email, password, rememberMe) => {
         if (data.resultCode === 0) {
             dispatch(authorizeThunk());
         } else {
-            let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some ERROR";
+            let message = data.data.messages.length > 0 ? data.data.messages[0] : "Welcome!Refresh tha page";
             dispatch(setLoginDataAC(null, null, null, false, message))
         }
     };
