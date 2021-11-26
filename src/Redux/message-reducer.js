@@ -16,9 +16,8 @@ let initialState = {
         {name: "Anton", messageID: 12}
     ],
     dialog: {
-        messages: ["Hi!", "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG", "Fuck you,asshole!",
-            "Thanks man :)", "LOL", "DING=DONG", "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG",
-            "Fuck you,asshole!", "Thanks man :)", "LOL", "DING=DONG"]
+        messages: ["Hi!", "How are you?", "Hello!I'm okay,hope you're doing ok too? :)", "Yes,absolutely!", "I am very happy to hear that",
+            "Ok.Good bye than!","Yeah...I guess goodbye!"]
     }
 
 };
