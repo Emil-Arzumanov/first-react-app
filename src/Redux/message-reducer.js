@@ -17,7 +17,7 @@ let initialState = {
     ],
     dialog: {
         messages: ["Hi!", "How are you?", "Hello!I'm okay,hope you're doing ok too? :)", "Yes,absolutely!", "I am very happy to hear that",
-            "Ok.Good bye than!","Yeah...I guess goodbye!"]
+            "Ok.Goodbye than!","Yeah...I guess goodbye!"]
     }
 
 };
